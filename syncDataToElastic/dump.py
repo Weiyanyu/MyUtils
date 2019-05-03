@@ -73,26 +73,14 @@ def loadData(schemaName, tableName, indexName, typeName, start=0, size=10, limit
 
 
 if __name__ == "__main__":
-  # load question data
-  loadData(
-    schemaName=cf['huhu-qa-question']['schemaName'],
-    tableName=cf['huhu-qa-question']['tableName'],
-    indexName=cf['huhu-qa-question']['indexName'],
-    typeName=cf['huhu-qa-question']['typeName']
-  )
 
-  # load answer data
-  loadData(
-    schemaName=cf['huhu-qa-answer']['schemaName'],
-    tableName=cf['huhu-qa-answer']['tableName'],
-    indexName=cf['huhu-qa-answer']['indexName'],
-    typeName=cf['huhu-qa-answer']['typeName']
-  )
+  dataCount = cf['data-info']['data-count']
+  # load data
+  for i in range(int(dataCount)):
+    loadData(
+      schemaName=cf['data-info']['data-schemaName[%d]' % (i)],
+      tableName=cf['data-info']['data-tableName[%d]' % (i)],
+      indexName=cf['data-info']['data-indexName[%d]' % (i)],
+      typeName=cf['data-info']['data-typeName[%d]' % (i)]
+    )
 
-  #load user data
-  loadData(
-    schemaName=cf['huhu-user']['schemaName'],
-    tableName=cf['huhu-user']['tableName'],
-    indexName=cf['huhu-user']['indexName'],
-    typeName=cf['huhu-user']['typeName']
-  )
